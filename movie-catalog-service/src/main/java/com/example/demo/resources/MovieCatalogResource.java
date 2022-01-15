@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import com.example.demo.models.CatalogItem;
 import com.example.demo.models.Movie;
 import com.example.demo.models.Rating;
+import com.example.demo.models.UserCatalog;
 import com.example.demo.models.UserRating;
 
 @RestController
@@ -29,7 +30,7 @@ public class MovieCatalogResource {
 	
 	
 	@RequestMapping("/{userId}")
-	public List<CatalogItem> getCatalog(@PathVariable("userId") String userId){
+	public UserCatalog getCatalog(@PathVariable("userId") String userId){
 		
 		
 		
@@ -37,6 +38,8 @@ public class MovieCatalogResource {
 //				new Rating("1234", 4),
 //				new Rating("4646", 7)
 //		);
+		
+		UserCatalog userCatalog = new UserCatalog();
 		
 		UserRating ratings = restTemplate.getForObject("http://RATING-DATA-SERVICE/ratingsdata/users/" + userId, UserRating.class);
 		
@@ -53,10 +56,12 @@ public class MovieCatalogResource {
 //			.block();
 			
 			//Put them together
-			catalogItems.add(new CatalogItem(movie.getMovieName(), "Robots", rating.getRating()));
+			catalogItems.add(new CatalogItem(movie.getMovieName(), movie.getMovieDesc(), rating.getRating()));
 		}
 		
-		return catalogItems;
+		userCatalog.setCatalogItems(catalogItems);
+		
+		return userCatalog;
 		
 		
 		

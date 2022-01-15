@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>raiting-data-service</artifactId>
+	<artifactId>rating-data-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>raiting-data-service</name>
+	<name>rating-data-service</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

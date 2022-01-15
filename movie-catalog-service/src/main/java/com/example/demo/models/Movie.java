@@ -4,15 +4,17 @@ public class Movie {
 	
 	private String movieId;
 	private String movieName;
-	
+	private String movieDesc;
+
 	public Movie() {
 		super();
 	}
 
-	public Movie(String movieId, String movieName) {
+	public Movie(String movieId, String movieName, String movieDesc) {
 		super();
 		this.movieId = movieId;
 		this.movieName = movieName;
+		this.movieDesc = movieDesc;
 	}
 	
 	public String getMovieId() {
@@ -26,6 +28,14 @@ public class Movie {
 	}
 	public void setMovieName(String movieName) {
 		this.movieName = movieName;
+	}
+	
+	public String getMovieDesc() {
+		return movieDesc;
+	}
+
+	public void setMovieDesc(String movieDesc) {
+		this.movieDesc = movieDesc;
 	}
 	
 	
