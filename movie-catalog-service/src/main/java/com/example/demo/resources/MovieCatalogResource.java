@@ -16,6 +16,8 @@ import com.example.demo.models.UserRating;
 import com.example.demo.service.MovieInfo;
 import com.example.demo.service.UserRatingInfo;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
 @RestController
 @RequestMapping("/catalog")
 public class MovieCatalogResource {
@@ -34,7 +36,7 @@ public class MovieCatalogResource {
 
 	@RequestMapping("/{userId}")
 	public UserCatalog getCatalog(@PathVariable("userId") String userId) {
-
+		System.out.println("Entered getCatalog");
 //		List<Rating> ratings = Arrays.asList(
 //				new Rating("1234", 4),
 //				new Rating("4646", 7)
