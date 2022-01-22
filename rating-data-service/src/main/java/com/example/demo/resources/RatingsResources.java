@@ -21,7 +21,9 @@ public class RatingsResources {
 //	}
 
 	@RequestMapping("/users/{userId}")
-	public UserRating getUserRating(@PathVariable("userId") String userId) {
+	public UserRating getUserRating(@PathVariable("userId") String userId) throws InterruptedException {
+		System.out.println("Putting thread to sleep for 1 minute");
+		Thread.sleep(100000);
 		
 		List<Rating> allRatings = Arrays.asList(
 				new Rating("1", "1", 2),

@@ -1,6 +1,7 @@
 package com.example.demo.resources;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +17,20 @@ import com.example.demo.models.UserRating;
 import com.example.demo.service.MovieInfo;
 import com.example.demo.service.UserRatingInfo;
 
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 
 @RestController
 @RequestMapping("/catalog")
+@Bulkhead(name = "CATALOG_BULKHEAD", fallbackMethod = "getFallbackCatalog")
 public class MovieCatalogResource {
-
-	
 
 //	@Autowired
 //	private WebClient.Builder webClientBuilder;
 	// Get all rated movie IDs
-	
+
 	@Autowired
 	private MovieInfo movieInfo;
-	
+
 	@Autowired
 	private UserRatingInfo userRatingInfo;
 
@@ -68,8 +68,12 @@ public class MovieCatalogResource {
 
 	}
 
-	
+	public UserCatalog getFallbackCatalog(String userId, Exception ex) {
+
+		System.out.println("Entered getFallbackCatalog");
+
+		return new UserCatalog();
+
+	}
+
 }
-	
-
-
